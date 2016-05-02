@@ -16,5 +16,6 @@ document.addEventListener('keydown', function(event) {
 
 }, true);
 
-
-
+document.addEventListener('touchend', function(event){
+	window.location.href = '../MenuPage/menu.html';
+}, true);

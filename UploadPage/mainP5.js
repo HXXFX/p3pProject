@@ -12,6 +12,11 @@ function bindFileSelectHandler() {
 	    }
 	}, true);
 
+    document.addEventListener('touchend', function(event){
+        var fileSelector = document.getElementById('files');
+        fileSelector.click();
+    }, true);
+
 	// var fileSelector = document.getElementById('files');
 	// fileSelector.onchange = function() {
 	// 	window.location.href = '../P5VizPage/p5Viz.html?filename=' + fileSelector.files[0].name;
@@ -42,12 +47,6 @@ var newBackgroundImage;
 var oldBackgroundImage;
 var myFont;
 var myFXimg;
-
-document.addEventListener("DOMContentLoaded", loadFileFromURL);
-
-// function loadFileFromURL() {
-//     alert('the fucking filename to load');
-// }
 
 
 function setup() {
@@ -147,6 +146,17 @@ function newFileRead(){
     jsmediatags.read(file, {
         onSuccess: function(tag) {
             tags = tag.tags;
+            if (tags.title == null){
+                tags.title = "N/A";
+            }
+            if(tags.artist == null){
+                tags.artist = "N/A";
+            }
+        }, 
+        onError: function(error) {
+            console.log(':(', error.type, error.info);
+            tags.title = "N/A";
+            tags.artist = "N/A";
         }
     });
 }

@@ -9,3 +9,7 @@ document.addEventListener('keydown', function(event) {
     }
 
 }, true);
+
+document.addEventListener('touchend', function(event){
+	window.location.href = '../UploadPage/upload.html';
+}, true);
